@@ -71,6 +71,7 @@ class Producto:
         txt += f"\ncantidad: {self.__cantidad}"
         txt += f"\nprecio: {self.__precio}"
         txt += f"\ncolor: {self.__color}"
+        txt += f"\nOrigen: {self.__origen}"
         txt += f"\nCodigo: {self.__codigo}"
         txt += f"\nTamanio: {self.__tamanio}"
         txt += f"\nTipo: {self.__tipo}"

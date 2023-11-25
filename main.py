@@ -16,11 +16,14 @@ def registrar():
     d = DAO()
     d.registrar(pro)
 
+
+
 def eliminar():
     cod = buscarCodigo()
     if cod!=None:
         d = DAO()
         d.eliminar(cod.get_codigo())
+        print("Producto eliminado!!!")
     else:
         print("El codigo no existe!!")
 
@@ -51,6 +54,7 @@ def modificar():
         d = DAO()
         cod.set_codigo(preguntarCambio("Codigo: ",cod.get_codigo()))
         cod.set_nombre(preguntarCambio("Nombre: ",cod.get_nombre()))
+        cod.set_cantidad(preguntarCambio("cantidad: ",cod.get_cantidad()))
         cod.set_precio(preguntarCambio("Precio: ",cod.get_precio()))
         cod.set_color(preguntarCambio("Color: ",cod.get_color()))
         cod.set_origen(preguntarCambio("Origen: ",cod.get_origen()))
@@ -69,10 +73,34 @@ def preguntarCambio(valor:str,atributo):
         return atributo
 
 def mostrarOrigenTipo() ->Producto:
-    pass
+    oring = input("Ingrese el origen del producto: ")
+    tipo = input("Ingrese el tipo de producto: ")
+    d = DAO()
+    cod = d.mostrarOrigenTipo(oring,tipo)
+    if cod !=None:
+        print(cod)
+    return cod
 
-def buscarOrigenCantidadMayor():
-    pass
+def buscarOrigenCantidadMayor() -> Producto:
+    oring = input("Ingrese el origen de los productos: ")
+    value = input("Ingrese la cantidad: ")
+    d = DAO()
+    cod = d.buscarOrigenCantidadMayor(oring, value)
+    if cod!=None:
+        print(cod)
+    return cod
+
+#ordenar los productos por tipo y sumar sus cantidades.
+9
+
+
+def odenarSumarTipoCantidad() -> Producto:
+    tipo = input("Ingrese el tipo de prodructo: ")
+    d = DAO()
+    cod = d.odenarSumarTipoCantidad(tipo)
+    if cod!=None:
+        print(cod)
+    return cod
 
 def menu():
     print("Bienvenido")
@@ -82,9 +110,10 @@ def menu():
     print("3.- Buscar Producto por Codigo ")
     print("4.- Mostrar Todo")
     print("5.- Modificar")
-    #print("6.- Mostrar por origen y tipo")
-    #print("7.-buscar por Origen y cantidad que sea mayor ")
-    print("8.- Salir ")
+    print("6.- Mostrar por origen y tipo")
+    print("7.-buscar por Origen y cantidad que sea mayor ")
+    print("8.- ordenar los productos por tipo y sumar sus cantidades")
+    print("9.- Salir ")
     opcion = input("Ingrese una opcion: ")
     if opcion =="1":
         registrar()
@@ -96,11 +125,14 @@ def menu():
         mostrarTodo()
     elif opcion == "5":
         modificar()
-    #elif opcion == "6":
-    #    mostrarOrigenTipo()
-    #elif opcion == "7":
-    #    buscarOrigenCantidadMayor()
+    elif opcion == "6":
+        mostrarOrigenTipo()
+    elif opcion == "7":
+        buscarOrigenCantidadMayor()
     elif opcion =="8":
+        odenarSumarTipoCantidad()
+    
+    elif opcion =="9":
         print("Gracias por ultilizar el programa, vuelva pronto.")
         return True
     else:
